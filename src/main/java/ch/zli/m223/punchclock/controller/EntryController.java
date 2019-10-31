@@ -23,9 +23,15 @@ public class EntryController {
         return entryService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Entry createEntry(@Valid @RequestBody Entry entry) {
         return entryService.createEntry(entry);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteEntry(@PathVariable("id")long id){
+        entryService.deleteEntry(id);
     }
 }
