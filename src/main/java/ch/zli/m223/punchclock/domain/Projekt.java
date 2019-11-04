@@ -11,4 +11,7 @@ public class Projekt {
 
     @ManyToOne
     private Kunde customer;
+
+    @OneToMany
+    private Stunden hour;
 }

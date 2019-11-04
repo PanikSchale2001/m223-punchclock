@@ -27,6 +27,12 @@ public class Stunden {
 
     private String text;
 
+    @ManyToOne
+    private Projekt project;
+
+    @ManyToOne
+    private Person person;
+
     public Long getId() {
         return id;
     }

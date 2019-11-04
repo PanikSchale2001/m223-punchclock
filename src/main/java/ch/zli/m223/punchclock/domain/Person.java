@@ -33,6 +33,9 @@ public class Person {
     @Column(nullable = false)
     private String Password;
 
+    @OneToMany
+    private Stunden hour;
+
     public Long getId() {
         return id;
     }
