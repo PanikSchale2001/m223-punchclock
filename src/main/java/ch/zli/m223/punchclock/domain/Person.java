@@ -21,13 +21,10 @@ public class Person {
     @Column(nullable = false)
     private String firstname;
 
-    @Column(nullable = false)
     private String street;
 
-    @Column(nullable = false)
     private int zip;
 
-    @Column(nullable = false)
     private Date birthdate;
 
     @Column(nullable = false)

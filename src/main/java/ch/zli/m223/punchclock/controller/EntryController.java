@@ -1,6 +1,6 @@
 package ch.zli.m223.punchclock.controller;
 
-import ch.zli.m223.punchclock.domain.Entry;
+import ch.zli.m223.punchclock.domain.Stunden;
 import ch.zli.m223.punchclock.service.EntryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +19,13 @@ public class EntryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Entry> getAllEntries() {
+    public List<Stunden> getAllEntries() {
         return entryService.findAll();
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Entry createEntry(@Valid @RequestBody Entry entry) {
-        return entryService.createEntry(entry);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteEntry(@PathVariable("id")long id){
-        entryService.deleteEntry(id);
+    public Stunden createEntry(@Valid @RequestBody Stunden stunden) {
+        return entryService.createEntry(stunden);
     }
 }

@@ -1,25 +1,25 @@
 package ch.zli.m223.punchclock.service;
 
-import ch.zli.m223.punchclock.domain.Entry;
-import ch.zli.m223.punchclock.repository.EntryRepository;
+import ch.zli.m223.punchclock.domain.Stunden;
+import ch.zli.m223.punchclock.repository.StundenRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EntryService {
-    private EntryRepository entryRepository;
+    private StundenRepository stundenRepository;
 
-    public EntryService(EntryRepository entryRepository) {
-        this.entryRepository = entryRepository;
+    public EntryService(StundenRepository stundenRepository) {
+        this.stundenRepository = stundenRepository;
     }
 
-    public Entry createEntry(Entry entry) {
-        return entryRepository.saveAndFlush(entry);
+    public Stunden createEntry(Stunden stunden) {
+        return stundenRepository.saveAndFlush(stunden);
     }
 
-    public List<Entry> findAll() {
-        return entryRepository.findAll();
+    public List<Stunden> findAll() {
+        return stundenRepository.findAll();
     }
 
     /**
@@ -28,6 +28,6 @@ public class EntryService {
      * @param id
      */
     public void deleteEntry(long id) {
-        entryRepository.deleteById(id);
+        stundenRepository.deleteById(id);
     }
 }
