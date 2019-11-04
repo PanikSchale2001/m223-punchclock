@@ -1,5 +1,6 @@
 package ch.zli.m223.punchclock.security;
 
+import ch.zli.m223.punchclock.domain.Person;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,8 +32,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            ch.zli.m223.punchclock.domain.User creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), ch.zli.m223.punchclock.domain.User.class);
+            Person creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), Person.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

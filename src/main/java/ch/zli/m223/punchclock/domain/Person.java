@@ -7,12 +7,28 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-public class User {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private String lastname;
+
+    @Column(nullable = false)
+    private String firstname;
+
+    @Column(nullable = false)
+    private String street;
+
+    @Column(nullable = false)
+    private int zip;
+
+    @Column(nullable = false)
+    private Date birthdate;
 
     @Column(nullable = false)
     private String username;
@@ -26,6 +42,46 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getUsername() {
@@ -43,5 +99,4 @@ public class User {
     public void setPassword(String password) {
         Password = password;
     }
-
 }

@@ -1,6 +1,6 @@
 package ch.zli.m223.punchclock.controller;
 
-import ch.zli.m223.punchclock.domain.User;
+import ch.zli.m223.punchclock.domain.Person;
 import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody User user) {
+    public void signUp(@RequestBody Person user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         applicationUserRepository.save(user);
     }
