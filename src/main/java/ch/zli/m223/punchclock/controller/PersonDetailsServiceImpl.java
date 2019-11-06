@@ -1,7 +1,7 @@
 package ch.zli.m223.punchclock.controller;
 
 import ch.zli.m223.punchclock.domain.Person;
-import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
+import ch.zli.m223.punchclock.repository.PersonenRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,16 +11,16 @@ import static java.util.Collections.emptyList;
 
 @Service
 public class PersonDetailsServiceImpl implements UserDetailsService {
-    private ApplicationUserRepository applicationUserRepository;
+    private PersonenRepository personenRepository;
 
-    public PersonDetailsServiceImpl(ApplicationUserRepository applicationUserRepository) {
-        this.applicationUserRepository = applicationUserRepository;
+    public PersonDetailsServiceImpl(PersonenRepository personenRepository) {
+        this.personenRepository = personenRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Person applicationPerson;
-        applicationPerson = applicationUserRepository.findByUsername(username);
+        applicationPerson = personenRepository.findByUsername(username);
         if (applicationPerson == null) {
             throw new UsernameNotFoundException(username);
         }

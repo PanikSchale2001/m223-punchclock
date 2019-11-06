@@ -1,29 +1,37 @@
 package ch.zli.m223.punchclock.controller;
 
 import ch.zli.m223.punchclock.domain.Person;
-import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
+import ch.zli.m223.punchclock.repository.PersonenRepository;
+import ch.zli.m223.punchclock.service.PersonenService;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class PersonController {
+    private PersonenService personenService;
 
-    private ApplicationUserRepository applicationUserRepository;
+    private PersonenRepository personenRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public PersonController(ApplicationUserRepository applicationUserRepository,
+    public PersonController(PersonenRepository personenRepository,
                             BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.applicationUserRepository = applicationUserRepository;
+        this.personenRepository = personenRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody Person user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        applicationUserRepository.save(user);
+    public void signUp(@RequestBody Person person) {
+        person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
+        personenRepository.save(person);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Person> getAllPersons() {
+        return personenService.findAll();
     }
 }

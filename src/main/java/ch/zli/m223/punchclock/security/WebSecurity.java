@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 
+import static ch.zli.m223.punchclock.security.SecurityConstants.H2_CONSOLE;
 import static ch.zli.m223.punchclock.security.SecurityConstants.SIGN_UP_URL;
 
 
@@ -32,7 +33,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers("*", "/{filename:(.*)[\\.](html|css|js)}").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(H2_CONSOLE).permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))

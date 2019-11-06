@@ -1,7 +1,7 @@
 package ch.zli.m223.punchclock.controller;
 
 import ch.zli.m223.punchclock.domain.Stunden;
-import ch.zli.m223.punchclock.service.EntryService;
+import ch.zli.m223.punchclock.service.StundenService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +11,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
-    private EntryService entryService;
+    private StundenService stundenService;
 
-    public EntryController(EntryService entryService) {
-        this.entryService = entryService;
+    public EntryController(StundenService stundenService) {
+        this.stundenService = stundenService;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Stunden> getAllEntries() {
-        return entryService.findAll();
+        return stundenService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Stunden createEntry(@Valid @RequestBody Stunden stunden) {
-        return entryService.createEntry(stunden);
+        return stundenService.createEntry(stunden);
     }
 }

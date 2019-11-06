@@ -19,7 +19,7 @@ const REST_BASE_URL = ""
 
         async signUp(username, password, firstname, lastname, street, zip, birthdate) {
             console.log("Hello world!");
-            const response = await fetch("/uses/sign-up", {
+            const response = await fetch("/users/sign-up", {
                 method: "POST",
                 mode: "no-cors",
                 body: JSON.stringify({
