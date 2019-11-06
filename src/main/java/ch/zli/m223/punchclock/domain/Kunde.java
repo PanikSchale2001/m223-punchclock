@@ -1,10 +1,9 @@
 package ch.zli.m223.punchclock.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public class Kunde {
 
     @Id
@@ -13,8 +12,8 @@ public class Kunde {
 
     private String name;
 
-    @OneToMany
-    private Projekt project;
+    @OneToMany(mappedBy = "customer")
+    private List<Projekt> project;
 
     public Long getId() {
         return id;
@@ -32,11 +31,11 @@ public class Kunde {
         this.name = name;
     }
 
-    public Projekt getProject() {
+    public List<Projekt> getProject() {
         return project;
     }
 
-    public void setProject(Projekt project) {
+    public void setProject(List<Projekt> project) {
         this.project = project;
     }
 }

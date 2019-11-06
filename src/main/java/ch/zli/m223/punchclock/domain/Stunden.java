@@ -27,10 +27,10 @@ public class Stunden {
 
     private String text;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Projekt project;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Person person;
 
     public Long getId() {

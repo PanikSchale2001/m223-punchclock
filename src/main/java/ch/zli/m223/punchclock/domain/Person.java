@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Person {
@@ -33,8 +34,8 @@ public class Person {
     @Column(nullable = false)
     private String Password;
 
-    @OneToMany
-    private Stunden hour;
+    @OneToMany(mappedBy = "person")
+    private List<Stunden> hour;
 
     public Long getId() {
         return id;
