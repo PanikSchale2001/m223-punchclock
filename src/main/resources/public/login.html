@@ -34,7 +34,7 @@
                    const usernameEl = document.getElementById("username");
                     const passwordEl = document.getElementById("password");
                     restClass.signIn(usernameEl.value, passwordEl.value).then(() => {
-                            	//success -> redirect to index.html
+                            	//success -> redirect to
                             console.log("erfolgreich");
                                 	location.pathname = "/index.html";
                             }, error => document.getElementById("errorMsg").innerText = error);

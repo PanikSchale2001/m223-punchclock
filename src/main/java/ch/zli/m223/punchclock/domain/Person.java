@@ -37,6 +37,17 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Stunden> hour;
 
+    public Person(String lastname, String firstname, String street, int zip, String username, String password){
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.street = street;
+        this.zip = zip;
+        this.username = username;
+        Password = password;
+    }
+    public Person() {
+    }
+
     public Long getId() {
         return id;
     }

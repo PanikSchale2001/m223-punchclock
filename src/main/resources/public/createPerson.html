@@ -2,9 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Punchclock Client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="index.js" type="application/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container">
+    <h1>Person Erstellen</h1>
+    <form>
+        <div class="form-group">
+            <label>Nachname</label>
+            <input type="lastname" class="form-control" id="lastname" placeholder="Nachname">
+            <label>Vorname</label>
+            <input type="firstname" class="form-control" id="firstname" placeholder="Vorname">
+            <label>Starsse und Hausnummer</label>
+            <input type="street" class="form-control" id="street" placeholder="Strasse und Hausnummer">
+            <label>PLZ</label>
+            <input type="zip" class="form-control" id="zip" placeholder="PLZ">
+            <label>Benutzername</label>
+            <input type="username" class="form-control" id="username" placeholder="Benutzername">
+            <label>Passwort</label>
+            <input type="password" class="form-control" id="password" placeholder="Passwort">
 
+        </div>
+        <button class="btn btn-primary" onsubmit="onClickCreatePerson(onclick)" id="createBtn">Erstellen</button>
+        <span style="color: red;" id="errorMsg"></span>
+    </form>
+</div>
+<script src="createPerson.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+    function onClickCreatePerson(e){
+        const createPersonClass = new CreatePerson();
+        e.preventDefault();
+        const lastnameEl = document.getElementById("lastname");
+        const firstnameEl = document.getElementById("firstname");
+        const streetEl = document.getElementById("street");
+        const zipEl = document.getElementById("zip");
+        const usernameEl = document.getElementById("username");
+        const passwordEl = document.getElementById("password");
+        createPersonClass.signUp(usernameEl,passwordEl,firstnameEl,lastnameEl,streetEl,zipEl).then(() => {
+
+            //success -> redirect to
+            console.log("erfolgreich");
+            location.pathname = "/index.html";
+        }, error => document.getElementById("errorMsg").innerText = error);
+    }
+    });
+
+
+</script>
 </body>
 </html>
